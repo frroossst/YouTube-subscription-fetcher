@@ -1,0 +1,5 @@
+1. Fetch latest videos from channels on a daily basis and store in JSON file
+
+2. Send an email blast for all the subscriptions
+
+3. Cross reference against previous blast to avoid multiples
