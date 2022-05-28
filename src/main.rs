@@ -1,9 +1,20 @@
-use std::fs;
+use serde::{Serialize, Deserialize);
+#[tokio::main]
 
-fn main() {
+struct subs {
+    subs = []
+}
+
+async fn main() -> Result<(), reqwest::Error>{
     println!("Hello, world!");
-    let path = "subscriptions.json";
-    let data = fs::read_to_string(path).expect("Unable to read file");
-    let res: serde_json::Value = serde_json::from_str(&data).expect("Unable to parse");
-    println!("{}",res)
+    let api_response : String = reqwest::Client::new()
+        .get("https://navxe.herokuapp.com/api")
+        .send()
+        .await?
+        .text()
+        .await?;
+
+    println!("{:?}",api_response);
+
+    Ok(())
 }
