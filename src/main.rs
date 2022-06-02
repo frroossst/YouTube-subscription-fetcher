@@ -1,20 +1,14 @@
-use serde::{Serialize, Deserialize);
-#[tokio::main]
+use serde_json;
+use std::fs;
 
-struct subs {
-    subs = []
-}
+fn main() {
+    
+    // Reading JSON
+    
+    let data = fs::read_to_string("./subscriptions.json").expect("Unable to read file");
 
-async fn main() -> Result<(), reqwest::Error>{
-    println!("Hello, world!");
-    let api_response : String = reqwest::Client::new()
-        .get("https://navxe.herokuapp.com/api")
-        .send()
-        .await?
-        .text()
-        .await?;
+    let json : serde_json::Value = serde_json::from_str(&data).expect("JSON does not have correct format");
 
-    println!("{:?}",api_response);
+    println!("{}",json);
 
-    Ok(())
 }
