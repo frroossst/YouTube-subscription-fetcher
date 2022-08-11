@@ -1,7 +1,14 @@
+use serde::{Serialize};
 use serde_json;
 use std::fs;
 
+struct Subscriptions {
+    channels_list: Vec<String>
+}
+
 fn main() {
+
+    channel_subscriptions Vec<String> = vec!::New();
     
     // Reading JSON
     
